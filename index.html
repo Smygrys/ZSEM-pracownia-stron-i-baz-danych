@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tatuaże</title>
+    <link rel="stylesheet" href="styl.css" />
+  </head>
+  <body>
+    <header id="h1">
+      <img src="logo.png" alt="salon" style="max-width: 300px" />
+    </header>
+
+    <header id="h2">
+      <h1>Studio Tatuażu</h1>
+    </header>
+
+    <section>
+      <h2>Galeria</h2>
+      <img class="miniatury" src="smok.png" alt="smok.png" />
+      <img src="koliber.png" alt="koliber.png" class="miniatury" />
+    </section>
+
+    <aside>
+      <h3>Dodaj wzór</h3>
+      <label for="wzor">Wzór:</label><br /><br />
+      <input type="file" name="wzor" id="wzor" accept="image/png" /><br /><br />
+      <label for="kolor">Kolor:</label><br /><br />
+      <select name="kolor" id="kolor">
+        <option value="czarny">Czarny</option>
+        <option value="czerwony">Czerwony</option>
+        <option value="zielony">Zielony</option>
+        <option value="niebieski">Niebieski</option></select
+      ><br /><br />
+      <label for="cena">Cena:</label><br /><br />
+      <input type="number" name="cena" id="cena" /><br />
+      <button id="submit">Dodaj wzór</button>
+    </aside>
+
+    <footer>
+      <p>Autor strony:12345678910</p>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let submit = document.getElementById("submit");
+
+        submit.addEventListener("click", function () {
+          let wzor = document.getElementById("wzor").value;
+          let kolor = document.getElementById("kolor").value;
+          let cena = document.getElementById("cena").value;
+
+          if (wzor === "" || kolor === "" || cena === "") {
+            alert("Prosze wypełnic dane");
+          } else {
+            alert(`Wzór: ${wzor} kolor ${kolor} w cenie ${cena}`);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
