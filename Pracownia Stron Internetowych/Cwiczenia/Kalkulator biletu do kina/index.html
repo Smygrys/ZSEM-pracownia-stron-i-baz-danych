@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator biletu do kina</title>
+  </head>
+  <body>
+    <form>
+      <fieldset>
+        <legend>Kalkulator biletu do kina</legend>
+        <fieldset>
+          <label for="i">Podaj Imie</label><br />
+          <input type="text" id="i" /><br />
+          <label for="w">Podaj wiek</label><br />
+          <input type="number" id="w" /><br />
+          <label for="b">Podaj liczbe biletow</label><br />
+          <input type="number" id="b" /><br />
+          <button type="button" id="btn">Oblicz cene</button>
+        </fieldset>
+        <h3 id="wynik"></h3>
+        <h3 id="kom"></h3>
+        <h3 id="cjb"></h3>
+        <h3 id="lb"></h3>
+        <h3 id="z"></h3>
+        <h3 id="zp"></h3>
+      </fieldset>
+    </form>
+    <script>
+      let i = document.getElementById("i");
+      let w = document.getElementById("w");
+      let b = document.getElementById("b");
+      let btn = document.getElementById("btn");
+      let wynik = document.getElementById("wynik");
+      let kom = document.getElementById("kom");
+      let cjb = document.getElementById("cjb");
+      let lb = document.getElementById("lb");
+      let z = document.getElementById("z");
+      let zp = document.getElementById("zp");
+
+      btn.addEventListener("click", function () {
+        let wi = i.value;
+        let ww = Number(w.value);
+        let wb = Number(b.value);
+
+        wynik.innerHTML = "";
+        kom.innerHTML = "";
+        cjb.innerHTML = "";
+        lb.innerHTML = "";
+        z.innerHTML = "";
+        zp.innerHTML = "";
+
+        if (wi === "" || ww <= 0 || wb <= 0) {
+          kom.innerHTML = "Podaj poprawne dane";
+        } else {
+          let c;
+
+          if (ww <= 12) {
+            c = 15;
+          } else if (ww <= 17) {
+            c = 20;
+          } else {
+            c = 30;
+          }
+
+          let k = c * wb;
+
+          wynik.innerHTML = `Witaj ${wi}`;
+          kom.innerHTML = `Masz: ${ww} lat`;
+          cjb.innerHTML = `Cena jednego biletu: ${c} zl`;
+
+          if (wb > 3) {
+            let kr = k - k * 0.1;
+
+            lb.innerHTML = `Koszt przed rabatem: ${k} zl`;
+            z.innerHTML = "Rabat: 10%";
+            zp.innerHTML = `Do zaplaty po rabacie: ${kr} zl`;
+          } else {
+            lb.innerHTML = `Do zaplaty: ${k} zl`;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

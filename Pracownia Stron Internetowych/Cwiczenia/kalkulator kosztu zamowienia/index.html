@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator kosztu zamowienia</title>
+  </head>
+  <body>
+    <form>
+      <fieldset>
+        <legend>Kalkulator kosztu zamowienia</legend>
+        <fieldset>
+          <label for="np">Nazwa Produktu</label><br />
+          <input type="text" id="np" /><br />
+          <label for="cp">Cena jednego produktu</label><br />
+          <input type="number" id="cp" /><br />
+          <label for="is">Ilosc sztuk</label><br />
+          <input type="number" id="is" /><br /><br />
+          <button id="btn" type="button">Oblicz koszt</button>
+        </fieldset>
+
+        <h3 id="wynik"></h3>
+        <h3 id="pr"></h3>
+        <h3 id="czs"></h3>
+        <h3 id="il"></h3>
+        <h3 id="kz"></h3>
+        <h3 id="rabat"></h3>
+        <h3 id="kom"></h3>
+      </fieldset>
+    </form>
+
+    <script>
+      let np = document.getElementById("np"); // Nazwa
+      let cp = document.getElementById("cp"); // Cena
+      let is = document.getElementById("is"); // Sztuki
+      let btn = document.getElementById("btn");
+      let kom = document.getElementById("kom"); // komunikat
+      let wynik = document.getElementById("wynik"); // wynik
+      let pr = document.getElementById("pr"); // Produkt
+      let czs = document.getElementById("czs"); // Cena za sztuke
+      let il = document.getElementById("il"); // Ilosc
+      let kz = document.getElementById("kz"); // koszt zamowienia
+      let rabat = document.getElementById("rabat"); // Rabat
+
+      btn.addEventListener("click", function () {
+        let wnp = np.value;
+        let wcp = cp.value;
+        let wis = is.value;
+
+        if (wcp <= 0 || wis <= 0) {
+          kom.innerHTML = "Podaj poprawne dane!";
+        } else {
+          kom.innerHTML = "";
+          let k = wcp * wis; // koszt
+          if (k >= 100) {
+            let kw = k - k * 0.1;
+
+            pr.innerHTML = `Nazwa produkty: ${wnp} zl`;
+            czs.innerHTML = `Cena za sztuke: ${wcp} zl`;
+            il.innerHTML = `Ilosc: ${wis}`;
+            kz.innerHTML = `Koszt przed rabatem: ${k} zl`;
+            rabat.innerHTML = "Rabat: 10%";
+            wynik.innerHTML = `Koszt z rabatem 10% wynosi: ${kw}`;
+          } else {
+            pr.innerHTML = `Nazwa produkty: ${wnp} zl`;
+            czs.innerHTML = `Cena za sztuke: ${wcp} zl`;
+            il.innerHTML = `Ilosc: ${wis}`;
+            kz.innerHTML = `Koszt zamownia: ${k} zl`;
+            rabat.innerHTML = "Brak rabatu";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

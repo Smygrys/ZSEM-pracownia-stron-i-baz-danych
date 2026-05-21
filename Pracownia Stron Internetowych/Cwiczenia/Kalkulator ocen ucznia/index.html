@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator ocen ucznia</title>
+  </head>
+  <body>
+    <form>
+      <fieldset>
+        <legend>Kalkulator ocen ucznia</legend>
+        <fieldset>
+          <label for="im">Imie</label><br />
+          <input type="text" id="im" /><br />
+          <label for="om">Ocena z Matematyki</label><br />
+          <input type="text" id="om" /><br />
+          <label for="op">Ocena z Polski</label><br />
+          <input type="text" id="op" /><br />
+          <label for="oa">Ocena z Angielskiego</label><br />
+          <input type="text" id="oa" /><br />
+          <label for="oi">Ocena z Informatyki</label> <br />
+          <input type="text" id="oi" /><br />
+          <button type="button" id="btn">Oblicz srednia</button>
+        </fieldset>
+        <h3 id="uczen"></h3>
+        <h3 id="wynik"></h3>
+        <h3 id="kom"></h3>
+      </fieldset>
+    </form>
+    <script>
+      let im = document.getElementById("im");
+      let om = document.getElementById("om"); // matma
+      let op = document.getElementById("op"); // polski
+      let oa = document.getElementById("oa"); // angielska
+      let oi = document.getElementById("oi"); // informatyka
+      let btn = document.getElementById("btn");
+      let wynik = document.getElementById("wynik");
+      let kom = document.getElementById("kom");
+      let uczen = document.getElementById("uczen");
+
+      btn.addEventListener("click", function () {
+        let wim = im.value;
+        let wom = Number(om.value);
+        let wop = Number(op.value);
+        let woa = Number(oa.value);
+        let woi = Number(oi.value);
+
+        if (
+          wim === "" ||
+          wom <= 0 ||
+          wom > 6 ||
+          woa <= 0 ||
+          woa > 6 ||
+          woi <= 0 ||
+          woi > 6 ||
+          wop <= 0 ||
+          wop > 6
+        ) {
+          kom.innerHTML = "Podaj poprawne dane";
+        } else {
+          let srednia = (wom + woa + woi + wop) / 4;
+          let s = srednia.toFixed(2);
+          uczen.innerHTML = `Uczen: ${wim}`;
+          kom.innerHTML = `Srednia ocen: ${s}`;
+          if (s >= 4.75) {
+            wynik.innerHTML = "Bardzo dobry wynik";
+          } else if (s >= 3.00) {
+            wynik.innerHTML = "Dobry wynik";
+          } else if (s >= 2.0) {
+            wynik.innerHTML = "Musisz się poprawić";
+          } else {
+            wynik.innerHTML = "Zagrożenie";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

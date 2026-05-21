@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Funckji Kwadratowej</title>
+  </head>
+  <body>
+    <form>
+      <fieldset>
+        <legend>Kalkulator Funckji Kwadratowej</legend>
+        <fieldset>
+          <label for="a">Wpisz a</label><br />
+          <input type="number" name="a" id="a" placeholder="0" /><br />
+          <label for="b">Wpisz b</label><br />
+          <input type="number" name="b" id="b" placeholder="0" /> <br />
+          <label for="c">Wpisz c</label><br />
+          <input type="number" name="c" id="c" placeholder="0" /><br /><br />
+          <button id="btn" type="button">Oblicz</button>
+        </fieldset>
+        <h3>Wzor na funckje kwadratowa : f(x) = ax² + bx + c</h3>
+        <h3 id="wzor"></h3>
+        <h3 id="delta"></h3>
+        <h3 id="komunikat"></h3>
+        <h3 id="m0"></h3>
+        <h3 id="m1"></h3>
+        <h3 id="m2"></h3>
+        <h3 id="wynik"></h3>
+      </fieldset>
+    </form>
+    <script>
+      let a = document.getElementById("a");
+      let b = document.getElementById("b");
+      let c = document.getElementById("c");
+      let btn = document.getElementById("btn");
+      let wynik = document.getElementById("wynik");
+      let delta = document.getElementById("delta");
+      let wzor = document.getElementById("wzor");
+      let komunikat = document.getElementById("komunikat");
+      let m0 = document.getElementById("m0");
+      let m1 = document.getElementById("m1");
+      let m2 = document.getElementById("m2");
+
+      btn.addEventListener("click", function () {
+        let wa = a.value;
+        let wb = b.value;
+        let wc = c.value;
+
+        if (wa == 0) {
+          wynik.innerHTML = "To nie jest funckja kwadratowa";
+          m0.innerHTML = "";
+          m1.innerHTML = "";
+          m2.innerHTML = "";
+          komunikat.innerHTML = "";
+          wzor.innerHTML = "";
+          delta.innerHTML = "";
+        } else {
+          wzor.innerHTML = `Twoj wzor wyglada: f(x) = ${wa}x² + ${wb}x + ${wc}`;
+          let wdelta = wb * wb - 4 * wa * wc;
+          if (wdelta == 0) {
+            let wm1 = (-1 * wb) / (2 * wa);
+            delta.innerHTML = `Delta wynosi:  ${wdelta}`;
+            komunikat.innerHTML = "Jest jedno miejsce zerowe";
+            m0.innerHTML = `Miejsce zerowe wynosi: ${wm1}`;
+            wynik.innerHTML = "";
+            m1.innerHTML = "";
+            m2.innerHTML = "";
+          } else if (wdelta > 0) {
+            let pdelta = Math.sqrt(wdelta);
+            let wm1 = (-1 * wb - pdelta) / (2 * wa);
+            let wm2 = (-1 * wb + pdelta) / (2 * wa);
+            m1.innerHTML = `Pierwsze miejsce zerowe wynosi: ${wm1}`;
+            m2.innerHTML = `Deugie miejsce zerowe wynosi: ${wm2}`;
+            m0.innerHTML = "";
+            wynik.innerHTML = "";
+            delta.innerHTML = `Delta wynosi:  ${wdelta}`;
+            komunikat.innerHTML = "Sa dwa miejsca zerowe";
+          } else {
+            delta.innerHTML = `Delta wynosi: ${wdelta}`;
+            komunikat.innerHTML = "Brak miejsc zerowych";
+            m0.innerHTML = "";
+            m1.innerHTML = "";
+            m2.innerHTML = "";
+            wynik.innerHTML = "";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

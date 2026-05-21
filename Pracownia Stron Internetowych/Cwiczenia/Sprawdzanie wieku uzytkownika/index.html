@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sprawdzanie wikeu uzytkownika</title>
+  </head>
+  <body>
+    <form>
+      <fieldset>
+        <legend>Sprawdzanie wieku</legend>
+        <fieldset>
+          <label for="im">Imie</label><br />
+          <input type="text" id="im" /><br />
+          <label for="wk">Wiek</label><br />
+          <input type="number" id="wk" /><br />
+          <button type="button" id="btn">Sprawdz</button>
+        </fieldset>
+        <h3 id="wy"></h3>
+        <h3 id="dwy"></h3>
+      </fieldset>
+    </form>
+    <script>
+      let im = document.getElementById("im"); // Imie
+      let wk = document.getElementById("wk"); // Wiek
+      let btn = document.getElementById("btn");
+      let wy = document.getElementById("wy"); // Wynik
+      let dwy = document.getElementById("dwy"); // Dodatkowy wiek
+
+      btn.addEventListener("click", function () {
+        let wim = im.value;
+        let wwk = Number(wk.value);
+        wy.innerHTML = "";
+        dwy.innerHTML = "";
+
+        if (wim === "" || wwk <= 0) {
+          wy.innerHTML = "Podaj poprawne dane";
+        } else if (wwk >= 18) {
+          wy.innerHTML = `Czesc ${wim}, jestes pelnoletni`;
+        } else {
+          let dwk = 18 - wwk;
+          wy.innerHTML = `Czesc ${wim}, nie jestes pelnoletni.`;
+          if (dwk === 1) {
+            dwy.innerHTML = `Do pelnoletnosci brakuje ci ${dwk}rok.`;
+          } else {
+            dwy.innerHTML = `Do pelnoletnosci brakuje ci ${dwk}lat.`;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
