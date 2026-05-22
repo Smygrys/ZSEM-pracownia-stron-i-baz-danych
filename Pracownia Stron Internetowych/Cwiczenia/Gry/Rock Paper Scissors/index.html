@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+  </head>
+  <body>
+    <fieldset>
+      <legend>Rock Paper Scissors</legend>
+      <fieldset>
+        <h3 id="display"></h3>
+        <button id="rock" type="button">🪨</button>
+        <button id="paper" type="button">📃</button>
+        <button id="scissors" type="button">✂️</button>
+        <p id="result"></p>
+      </fieldset>
+    </fieldset>
+    <script>
+      let display = document.getElementById("display");
+      let rock = document.getElementById("rock");
+      let paper = document.getElementById("paper");
+      let scissors = document.getElementById("scissors");
+      let result = document.getElementById("result");
+      let choise = ["🪨", "📃", "✂️"];
+
+      // let rand = Math.floor(Math.random() * 3);
+
+      rock.addEventListener("click", function () {
+        let rand = Math.floor(Math.random() * 3);
+        let pick = choise[rand];
+        if (pick === choise[0]) {
+          display.innerHTML = pick;
+          result.innerHTML = `It's a draw!`;
+        } else if (pick === choise[1]) {
+          display.innerHTML = pick;
+          result.innerHTML = `You lost!`;
+        } else if (pick === choise[2]) {
+          display.innerHTML = pick;
+          result.innerHTML = `You won!`;
+        }
+      });
+
+      paper.addEventListener("click", function () {
+        let rand = Math.floor(Math.random() * 3);
+        let pick = choise[rand];
+        if (pick === choise[0]) {
+          display.innerHTML = pick;
+          result.innerHTML = `You won!`;
+        } else if (pick === choise[1]) {
+          display.innerHTML = pick;
+          result.innerHTML = `It's a draw!`;
+        } else if (pick === choise[2]) {
+          display.innerHTML = pick;
+          result.innerHTML = `You lost!`;
+        }
+      });
+
+      scissors.addEventListener("click", function () {
+        let rand = Math.floor(Math.random() * 3);
+        let pick = choise[rand];
+        if (pick === choise[0]) {
+          display.innerHTML = pick;
+          result.innerHTML = `You Lost!`;
+        } else if (pick === choise[1]) {
+          display.innerHTML = pick;
+          result.innerHTML = `You won!`;
+        } else if (pick === choise[2]) {
+          display.innerHTML = pick;
+          result.innerHTML = `It's a draw!`;
+        }
+      });
+    </script>
+  </body>
+</html>

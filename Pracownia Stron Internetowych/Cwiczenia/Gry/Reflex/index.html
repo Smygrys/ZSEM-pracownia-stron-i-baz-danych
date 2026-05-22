@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reflex</title>
+  </head>
+  <body>
+    <h3>Check your Reflex</h3>
+    <p>Description:</p>
+    <p>
+      Click the start button, and wait for color change and click as fastest you
+      can
+    </p>
+
+    <div
+      id="game"
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        background: red;
+        cursor: pointer;
+      "
+    >
+      <h1 id="wait"></h1>
+      <h1 id="result"></h1>
+    </div>
+    <br />
+    <button type="button" id="btn">Start</button>
+    <p id="test"></p>
+    <script>
+      let game = document.getElementById("game");
+      let wait = document.getElementById("wait");
+      let result = document.getElementById("result");
+      let btn = document.getElementById("btn");
+      let test = document.getElementById("test");
+
+      let timer;
+      let gameStarted = false;
+      let canClick = false;
+      let startTime;
+
+      btn.addEventListener("click", function () {
+        clearInterval(timer);
+        game.style.backgroundColor = "red";
+        result.innerHTML = "";
+        wait.innerHTML = "Wait...";
+        test.innerHTML = "";
+
+        gameStarted = true;
+        canClick = false;
+
+        let time = Math.floor(Math.random() * 3) + 3;
+
+        timer = setInterval(function () {
+          time--;
+
+          if (time === 0) {
+            clearInterval(timer);
+            game.style.backgroundColor = "green";
+            wait.innerHTML = "Click now!";
+            canClick = true;
+            startTime = Date.now();
+          }
+        }, 1000);
+      });
+
+      game.addEventListener("click", function () {
+        if (!gameStarted) return;
+
+        if (canClick) {
+          let endTime = Date.now();
+          let reactionTime = endTime - startTime;
+
+          wait.innerHTML = "";
+          result.innerHTML = `Your time: ${reactionTime}ms`;
+          gameStarted = false;
+          canClick = false;
+        } else {
+          clearInterval(timer);
+          game.style.backgroundColor = "blue";
+          wait.innerHTML = "Too early! Fail!";
+          gameStarted = false;
+        }
+      });
+    </script>
+  </body>
+</html>

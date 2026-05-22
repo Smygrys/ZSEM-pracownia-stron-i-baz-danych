@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess the number</title>
+  </head>
+  <body>
+    <form id="form">
+      <fieldset>
+        <legend>Guess The Number</legend>
+        <fieldset>
+          <label for="a">Write Down Your Number</label><br />
+          <input type="number" id="a" /><br />
+          <br />
+          <button type="button" id="check">Check</button>
+          <button type="button" id="reset">Start a new Game!</button>
+        </fieldset>
+        <h3 id="result"></h3>
+      </fieldset>
+    </form>
+
+    <script>
+      let a = document.getElementById("a");
+      let check = document.getElementById("check");
+      let reset = document.getElementById("reset");
+      let result = document.getElementById("result");
+      let form = document.getElementById("form");
+
+      let rand = Math.floor(Math.random() * 100) + 1;
+      console.log(rand);
+
+      function checkNumber() {
+        let av = Number(a.value);
+
+        if (av <= 0 || av > 100) {
+          result.innerHTML = "Write number from 1 to 100!";
+        } else if (av === rand) {
+          result.innerHTML = `You guessed the number! The number was: ${rand}`;
+        } else if (av > rand) {
+          result.innerHTML = `Your number: ${av} > Number!`;
+        } else {
+          result.innerHTML = `Your number: ${av} < Number!`;
+        }
+      }
+
+      check.addEventListener("click", function () {
+        checkNumber();
+      });
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        checkNumber();
+      });
+
+      reset.addEventListener("click", function () {
+        rand = Math.floor(Math.random() * 100) + 1;
+        console.log(rand);
+        a.value = "";
+        result.innerHTML = "";
+      });
+    </script>
+  </body>
+</html>
